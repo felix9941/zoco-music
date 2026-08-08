@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Search as SearchIcon } from "lucide-react";
+import { Link } from "react-router-dom";
 import api from "../services/api";
 
 export default function Search() {
@@ -22,9 +23,9 @@ export default function Search() {
 
       try {
         const [tracksRes, albumsRes, artistsRes] = await Promise.all([
-          api.get(`/search/track?q=${query}&limit=5`),
-          api.get(`/search/album?q=${query}&limit=5`),
-          api.get(`/search/artist?q=${query}&limit=5`),
+          api.get(`/search/track?q=${query}&limit=6`),
+          api.get(`/search/album?q=${query}&limit=6`),
+          api.get(`/search/artist?q=${query}&limit=6`),
         ]);
 
         setResults({
@@ -113,8 +114,9 @@ export default function Search() {
             <h3 className="text-2xl font-bold mb-4">Álbumes</h3>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
               {results.albums.map((album) => (
-                <div
+                <Link
                   key={album.id}
+                  to={`/album/${album.id}`}
                   className="bg-zoco-highlight p-4 rounded-md cursor-pointer hover:bg-zoco-elevated transition"
                 >
                   <img
@@ -126,7 +128,7 @@ export default function Search() {
                   <p className="text-sm text-gray-400 truncate">
                     {album.artist.name}
                   </p>
-                </div>
+                </Link>
               ))}
             </div>
           </section>

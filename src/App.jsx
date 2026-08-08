@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Search from "./views/Search";
+import AlbumDetail from "./views/AlbumDetail";
 
 const Home = () => (
   <div className="p-8">
@@ -21,6 +22,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="search" element={<Search />} />
           <Route path="favorites" element={<Favorites />} />
+          <Route path="album/:id" element={<AlbumDetail />} />
         </Route>
       </Routes>
     </BrowserRouter>
