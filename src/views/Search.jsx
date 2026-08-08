@@ -23,9 +23,9 @@ export default function Search() {
 
       try {
         const [tracksRes, albumsRes, artistsRes] = await Promise.all([
-          api.get(`/search/track?q=${query}&limit=6`),
-          api.get(`/search/album?q=${query}&limit=6`),
-          api.get(`/search/artist?q=${query}&limit=6`),
+          api.get(`/search/track?q=${query}&limit=5`),
+          api.get(`/search/album?q=${query}&limit=5`),
+          api.get(`/search/artist?q=${query}&limit=5`),
         ]);
 
         setResults({
@@ -128,6 +128,26 @@ export default function Search() {
                   <p className="text-sm text-gray-400 truncate">
                     {album.artist.name}
                   </p>
+                </Link>
+              ))}
+            </div>
+          </section>
+          <section>
+            <h3 className="text-2xl font-bold mb-4">Artistas</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+              {results.artists.map((artist) => (
+                <Link
+                  key={artist.id}
+                  to={`/artist/${artist.id}`}
+                  className="bg-zoco-highlight p-4 rounded-md cursor-pointer hover:bg-zoco-elevated transition"
+                >
+                  <img
+                    src={artist.picture_medium}
+                    alt={artist.name}
+                    className="w-full aspect-square object-cover mb-4 rounded shadow-lg"
+                  />
+                  <p className="font-bold text-white truncate">{artist.name}</p>
+                  <p className="text-sm text-gray-400 truncate">Artista</p>
                 </Link>
               ))}
             </div>
