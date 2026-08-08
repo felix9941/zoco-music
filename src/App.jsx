@@ -1,14 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
+import Search from "./views/Search";
 
 const Home = () => (
   <div className="p-8">
     <h2 className="text-3xl font-bold">Inicio</h2>
-  </div>
-);
-const Search = () => (
-  <div className="p-8">
-    <h2 className="text-3xl font-bold">Buscar</h2>
   </div>
 );
 const Favorites = () => (
