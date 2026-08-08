@@ -2,15 +2,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Search from "./views/Search";
 import AlbumDetail from "./views/AlbumDetail";
+import Favorites from "./views/Favorites";
 
 const Home = () => (
   <div className="p-8">
     <h2 className="text-3xl font-bold">Inicio</h2>
-  </div>
-);
-const Favorites = () => (
-  <div className="p-8">
-    <h2 className="text-3xl font-bold">Favoritos</h2>
   </div>
 );
 
