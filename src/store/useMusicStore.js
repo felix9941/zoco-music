@@ -7,8 +7,22 @@ export const useMusicStore = create(
       currentTrack: null,
       isPlaying: false,
       favorites: [],
+      history: [],
 
-      setCurrentTrack: (track) => set({ currentTrack: track, isPlaying: true }),
+      setCurrentTrack: (track) =>
+        set((state) => {
+          const filteredHistory = state.history.filter(
+            (t) => t.id !== track.id,
+          );
+          const newHistory = [track, ...filteredHistory].slice(0, 10);
+
+          return {
+            currentTrack: track,
+            isPlaying: true,
+            history: newHistory,
+          };
+        }),
+
       togglePlay: () => set((state) => ({ isPlaying: !state.isPlaying })),
 
       toggleFavorite: (track) => {
