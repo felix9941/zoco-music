@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { Search as SearchIcon } from "lucide-react";
+import { Search as SearchIcon, Play } from "lucide-react";
 import { Link } from "react-router-dom";
 import api from "../services/api";
+import { useMusicStore } from "../store/useMusicStore";
 
 export default function Search() {
   const [query, setQuery] = useState("");
@@ -12,6 +13,7 @@ export default function Search() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const { setCurrentTrack, currentTrack } = useMusicStore();
 
   useEffect(() => {
     if (!query.trim()) {
@@ -85,28 +87,49 @@ export default function Search() {
           <section>
             <h3 className="text-2xl font-bold mb-4">Canciones</h3>
             <div className="flex flex-col gap-2">
-              {results.tracks.map((track) => (
-                <div
-                  key={track.id}
-                  className="flex items-center gap-4 hover:bg-zoco-highlight p-2 rounded-md group transition-colors"
-                >
-                  <img
-                    src={track.album.cover_small}
-                    alt={track.title}
-                    className="w-12 h-12 rounded"
-                  />
-                  <div className="flex-1">
-                    <p className="font-bold text-white group-hover:text-zoco-accent transition-colors">
-                      {track.title}
-                    </p>
-                    <p className="text-sm text-gray-400">{track.artist.name}</p>
+              {results.tracks.map((track) => {
+                // Verificamos si esta es la canción que está sonando
+                const isCurrent = currentTrack?.id === track.id;
+
+                return (
+                  <div
+                    key={track.id}
+                    onClick={() => setCurrentTrack(track)}
+                    className={`flex items-center gap-4 hover:bg-zoco-highlight p-2 rounded-md group transition-colors cursor-pointer ${
+                      isCurrent ? "bg-zoco-elevated" : ""
+                    }`}
+                  >
+                    <img
+                      src={track.album.cover_small}
+                      alt={track.title}
+                      className="w-12 h-12 rounded"
+                    />
+                    <div className="flex-1">
+                      <p
+                        className={`font-bold transition-colors ${
+                          isCurrent
+                            ? "text-zoco-accent"
+                            : "text-white group-hover:text-zoco-accent"
+                        }`}
+                      >
+                        {track.title}
+                      </p>
+                      <p className="text-sm text-gray-400">
+                        {track.artist.name}
+                      </p>
+                    </div>
+                    <span className="text-sm text-gray-400">
+                      {Math.floor(track.duration / 60)}:
+                      {(track.duration % 60).toString().padStart(2, "0")}
+                    </span>
+
+                    {/* Botón de Play agregado para consistencia visual */}
+                    <button className="text-white opacity-0 group-hover:opacity-100 transition p-2 bg-zoco-accent rounded-full ml-4 focus:outline-none">
+                      <Play size={16} fill="black" color="black" />
+                    </button>
                   </div>
-                  <span className="text-sm text-gray-400">
-                    {Math.floor(track.duration / 60)}:
-                    {(track.duration % 60).toString().padStart(2, "0")}
-                  </span>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </section>
 
