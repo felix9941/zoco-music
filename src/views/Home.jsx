@@ -30,14 +30,14 @@ export default function Home() {
   }, []);
   if (isLoading) {
     return (
-      <div className="p-8 flex items-center justify-center h-full">
+      <div className="p-4 md:p-8 flex items-center justify-center h-full">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-zoco-accent"></div>
       </div>
     );
   }
   if (error) {
     return (
-      <div className="p-8 flex flex-col items-center justify-center h-full text-center">
+      <div className="p-4 md:p-8 flex flex-col items-center justify-center h-full text-center">
         <h2 className="text-2xl font-bold text-red-500 mb-2">¡Ups!</h2>
         <p className="text-gray-400">{error}</p>
         <button
@@ -51,10 +51,10 @@ export default function Home() {
   }
 
   return (
-    <div className="p-8 pb-32">
+    <div className="p-4 md:p-8 pb-32">
       {history.length > 0 && (
         <section className="mb-12">
-          <h2 className="text-3xl font-bold mb-6 text-white">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-white">
             Escuchados recientemente
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
@@ -62,21 +62,21 @@ export default function Home() {
               <div
                 key={`history-${track.id}`}
                 onClick={() => setCurrentTrack(track)}
-                className="flex items-center gap-4 bg-zoco-highlight hover:bg-zoco-elevated transition rounded-md overflow-hidden cursor-pointer group"
+                className="flex items-center gap-2 md:gap-4 bg-zoco-highlight hover:bg-zoco-elevated transition rounded-md overflow-hidden cursor-pointer group"
               >
                 <img
                   src={track.album?.cover_small || track.cover_small}
                   alt={track.title}
-                  className="w-16 h-16 object-cover shadow-md"
+                  className="w-12 h-12 md:w-16 md:h-16 object-cover shadow-md flex-shrink-0"
                 />
-                <div className="flex-1 truncate pr-4">
+                <div className="flex-1 min-w-0 pr-2">
                   <p
-                    className={`font-bold truncate text-sm ${currentTrack?.id === track.id ? "text-zoco-accent" : "text-white"}`}
+                    className={`font-bold truncate text-xs md:text-sm ${currentTrack?.id === track.id ? "text-zoco-accent" : "text-white"}`}
                   >
                     {track.title}
                   </p>
                 </div>
-                <div className="pr-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="pr-2 md:pr-4 opacity-0 group-hover:opacity-100 transition-opacity">
                   <div className="bg-zoco-accent text-black rounded-full p-2 shadow-lg">
                     <Play size={16} fill="black" />
                   </div>
@@ -87,7 +87,7 @@ export default function Home() {
         </section>
       )}
       <section>
-        <h2 className="text-3xl font-bold mb-6 text-white">
+        <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-white">
           Nuevos Lanzamientos
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
