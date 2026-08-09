@@ -1,12 +1,5 @@
 import { Outlet, Link } from "react-router-dom";
-import {
-  Home,
-  Search,
-  Library,
-  Play,
-  SkipBack,
-  SkipForward,
-} from "lucide-react";
+import { Home, Search, Heart, Play, SkipBack, SkipForward } from "lucide-react";
 import { useMusicStore } from "../store/useMusicStore";
 
 export default function Layout() {
@@ -35,7 +28,7 @@ export default function Layout() {
               to="/favorites"
               className="flex items-center gap-4 hover:text-white transition"
             >
-              <Library size={24} /> Favoritos
+              <Heart size={24} /> Favoritos
             </Link>
           </nav>
         </aside>
