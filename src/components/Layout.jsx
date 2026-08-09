@@ -7,7 +7,7 @@ export default function Layout() {
   const location = useLocation();
 
   return (
-    <div className="h-screen flex flex-col bg-black text-white overflow-hidden">
+    <div className="h-[100dvh] w-full flex flex-col bg-black text-white overflow-hidden">
       <div className="flex-1 flex overflow-hidden">
         <aside className="w-64 bg-zoco-base hidden md:flex flex-col p-6">
           <h1 className="text-2xl font-bold mb-8 text-zoco-accent">
@@ -39,7 +39,7 @@ export default function Layout() {
         </main>
       </div>
 
-      <div className="flex flex-col flex-none z-50">
+      <div className="fixed bottom-0 left-0 w-full flex flex-col z-50 bg-black">
         <footer className="h-20 md:h-24 bg-zoco-press border-t border-gray-800 flex items-center justify-between px-3 md:px-4">
           <div className="flex items-center gap-3 w-1/2 md:w-1/3 overflow-hidden">
             {currentTrack ? (
