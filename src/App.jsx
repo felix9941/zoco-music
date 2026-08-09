@@ -1,15 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
+import Home from "./views/Home";
 import Search from "./views/Search";
 import AlbumDetail from "./views/AlbumDetail";
 import ArtistDetail from "./views/ArtistDetail";
 import Favorites from "./views/Favorites";
-
-const Home = () => (
-  <div className="p-8">
-    <h2 className="text-3xl font-bold">Inicio</h2>
-  </div>
-);
 
 function App() {
   return (
