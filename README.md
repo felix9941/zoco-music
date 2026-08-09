@@ -16,6 +16,17 @@ Para cumplir con el requerimiento de consumir datos reales, el proyecto inicialm
 
 Esta decisión permite mantener la aplicación 100% funcional y demostrable (buscando artistas, canciones y álbumes reales) sin depender de suscripciones pagas para su evaluación, configurando un proxy en Vite para el manejo correcto de CORS.
 
+## 📂 Arquitectura del Proyecto
+
+El proyecto sigue una estructura modular basada en el principio de Separación de Responsabilidades (Separation of Concerns), dividiendo la interfaz, la lógica de negocio y los servicios externos:
+
+- **`/src/views`**: Contiene los componentes de nivel de página (Home, Search, Favorites, etc.) que son renderizados dinámicamente según la ruta.
+- **`/src/components`**: Almacena piezas de interfaz de usuario puramente visuales y reutilizables (como el `Layout` principal o `AlbumCard`).
+- **`/src/store`**: Centraliza toda la lógica del estado global (canción actual, historial, gestión de favoritos) utilizando Zustand.
+- **`/src/services`**: Aísla la configuración del cliente HTTP (Axios) y centraliza las llamadas a la API, facilitando el mantenimiento si las rutas externas cambian.
+- **`App.jsx`**: Actúa como el orquestador principal, definiendo las rutas (React Router) y envolviendo la aplicación.
+- **`main.jsx`**: Es el punto de entrada principal, encargado de montar el árbol de React en el archivo `index.html`.
+
 ## 🛠️ Instalación y Ejecución local
 
 Sigue estos pasos para correr el proyecto en tu entorno local:
