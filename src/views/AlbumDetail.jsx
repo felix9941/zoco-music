@@ -42,18 +42,20 @@ export default function AlbumDetail() {
   }
 
   return (
-    <div className="p-8 pb-32">
-      <div className="flex flex-col md:flex-row gap-6 items-end mb-8">
+    <div className="p-4 md:p-8 pb-32 md:pb-32">
+      <div className="flex flex-col md:flex-row gap-6 items-center md:items-end mb-8">
         <img
           src={album.cover_medium}
           alt={album.title}
-          className="w-48 h-48 shadow-2xl rounded"
+          className="w-48 h-48 md:w-56 md:h-56 shadow-2xl rounded object-cover"
         />
-        <div>
-          <p className="text-sm font-bold uppercase">Álbum</p>
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">{album.title}</h1>
-          <p className="font-bold">
-            {album.artist.name} • {album.tracks.data.length} canciones
+        <div className="text-center md:text-left flex-1">
+          <p className="text-sm font-bold uppercase mt-2 md:mt-0">Álbum</p>
+          <h1 className="text-3xl md:text-6xl font-bold mb-2 md:mb-4">
+            {album.title}
+          </h1>
+          <p className="font-bold text-gray-300">
+            {album.artist.name} • {album.tracks.data.length} Canciones
           </p>
         </div>
       </div>
@@ -64,13 +66,19 @@ export default function AlbumDetail() {
           return (
             <div
               key={track.id}
-              className="flex items-center gap-4 hover:bg-zoco-highlight p-3 rounded-md group transition"
+              className="flex items-center gap-3 md:gap-4 hover:bg-zoco-highlight p-2 md:p-3 rounded-md group transition"
             >
-              <span className="text-gray-400 w-6 text-right">{index + 1}</span>
+              <span className="text-gray-400 w-4 md:w-6 text-right text-sm md:text-base">
+                {index + 1}
+              </span>
 
-              <div className="flex-1">
-                <p className="font-bold text-white">{track.title}</p>
-                <p className="text-sm text-gray-400">{track.artist.name}</p>
+              <div className="flex-1 overflow-hidden">
+                <p className="font-bold text-white truncate text-sm md:text-base">
+                  {track.title}
+                </p>
+                <p className="text-xs md:text-sm text-gray-400 truncate">
+                  {track.artist.name}
+                </p>
               </div>
 
               <button
@@ -85,7 +93,7 @@ export default function AlbumDetail() {
               </button>
               <button
                 onClick={() => setCurrentTrack({ ...track, album })}
-                className="text-white opacity-0 group-hover:opacity-100 transition p-2 bg-zoco-accent rounded-full ml-4 focus:outline-none focus:opacity-100"
+                className="text-white opacity-100 md:opacity-0 group-hover:opacity-100 transition p-2 bg-zoco-accent rounded-full ml-2 md:ml-4 focus:outline-none"
               >
                 <Play size={16} fill="black" color="black" />
               </button>
